@@ -49,9 +49,9 @@
 			isa = PBXGroup;
 			children = (
 				800E7EAF1EA9A7E800A45D54 /* QRCodeReader.swift */,
+				800E7EB21EA9A7E800A45D54 /* QRCodeViewController.swift */,
 				800E7EB01EA9A7E800A45D54 /* QRCodeReaderView.swift */,
 				800E7EB11EA9A7E800A45D54 /* QRCodeReaderView.xib */,
-				800E7EB21EA9A7E800A45D54 /* QRCodeViewController.swift */,
 				800E7EB71EA9A83E00A45D54 /* QRCodeReader.xcassets */,
 			);
 			path = QRCodeReader;

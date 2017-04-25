@@ -35,6 +35,10 @@ class QRCodeViewController: UIViewController {
     
     public var completion: QRCodeReaderCompletion?
     
+    convenience init(completion: QRCodeReaderCompletion?) {
+        self.init()
+        self.completion = completion
+    }
 }
 
 extension QRCodeViewController{
