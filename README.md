@@ -95,16 +95,26 @@ extension QRCodeReader: AVCaptureMetadataOutputObjectsDelegate{
 ```
 
 ### 用法：
+- 代码方式
 ```
-let vc = QRCodeViewController()
-// 扫描完成回调
-vc.completion = {[unowned self](result)in
-  let alert = UIAlertController(title: "扫描结果", message: result, preferredStyle: .alert)
-  alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
-  self.present(alert, animated: true, completion: nil)
+let vc = QRCodeViewController {[unowned self] (result) in
+     print("扫描结果: \(result)")
 }
 // 显示扫一扫界面
 present(vc, animated: true, completion: nil)
+```
+- storyboard方式
+
+![在storyboard上拖拽一个viewcontroller](http://upload-images.jianshu.io/upload_images/1334681-dec6c8bdfb6404fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+```
+override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+      if let vc = segue.destination as? QRCodeViewController{
+          vc.completion = {[unowned self](result)in
+              print("扫描结果: \(result)")
+          }
+      }
+}
 ```
 
 > 如果对你有帮助，别忘了给个⭐️哦。
