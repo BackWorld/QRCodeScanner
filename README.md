@@ -3,17 +3,17 @@ A QRCode camera scanning and photo album QRCode image recognizer project.
 
 简书地址: http://www.jianshu.com/p/fe7abb7eb069
 
-###效果：
+### 效果：
 
 ![iPad横屏](http://upload-images.jianshu.io/upload_images/1334681-d637ccedede2e987.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###要求：
+### 要求：
 - Platform: iOS8.0+ 
 - Language: Swift3.0
 - Editor: Xcode8
 - Adaptive: 适配横竖屏+所有设备
 
-###原理：
+### 原理：
 - xib布局 + AVFoundation
 - xib布局
 
@@ -94,7 +94,7 @@ extension QRCodeReader: AVCaptureMetadataOutputObjectsDelegate{
 }
 ```
 
-###用法：
+### 用法：
 ```
 let vc = QRCodeViewController()
 // 扫描完成回调
@@ -107,5 +107,5 @@ vc.completion = {[unowned self](result)in
 present(vc, animated: true, completion: nil)
 ```
 
-> 如果对你有帮助，别忘了点个❤️或给个⭐️哦。
+> 如果对你有帮助，别忘了给个⭐️哦。
 
