@@ -131,7 +131,6 @@ extension QRCodeReader: AVCaptureMetadataOutputObjectsDelegate{
         if !metadataObjects.isEmpty,
             let data = metadataObjects.first as? AVMetadataMachineReadableCodeObject
         {
-            stopScanning()
             completion?(data.stringValue)
         }
     }

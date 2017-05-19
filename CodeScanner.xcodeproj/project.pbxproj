@@ -17,6 +17,7 @@
 		809995081EA7602200798709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 809995061EA7602200798709 /* Main.storyboard */; };
 		8099950A1EA7602200798709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 809995091EA7602200798709 /* Assets.xcassets */; };
 		8099950D1EA7602200798709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8099950B1EA7602200798709 /* LaunchScreen.storyboard */; };
+		80C3E86A1ECEC2D1005C08BA /* WebResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3E8691ECEC2D1005C08BA /* WebResultVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		809995091EA7602200798709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8099950C1EA7602200798709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8099950E1EA7602200798709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80C3E8691ECEC2D1005C08BA /* WebResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebResultVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				809995091EA7602200798709 /* Assets.xcassets */,
 				8099950B1EA7602200798709 /* LaunchScreen.storyboard */,
 				8099950E1EA7602200798709 /* Info.plist */,
+				80C3E8691ECEC2D1005C08BA /* WebResultVC.swift */,
 			);
 			path = CodeScanner;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80C3E86A1ECEC2D1005C08BA /* WebResultVC.swift in Sources */,
 				809995051EA7602200798709 /* ViewController.swift in Sources */,
 				800E7EB41EA9A7E800A45D54 /* QRCodeReaderView.swift in Sources */,
 				800E7EB31EA9A7E800A45D54 /* QRCodeReader.swift in Sources */,
@@ -289,13 +293,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = JWD48Y236P;
 				INFOPLIST_FILE = CodeScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.crtvup.moodle.stu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.founder.codescanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5bb92c59-bf02-4609-8187-d7487b1f8db0";
-				PROVISIONING_PROFILE_SPECIFIER = GKMoodleStuDev;
+				PROVISIONING_PROFILE = "a5eda465-0560-4fbc-abfd-934107239650";
+				PROVISIONING_PROFILE_SPECIFIER = FounderEdu;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -304,11 +310,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = JWD48Y236P;
 				INFOPLIST_FILE = CodeScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.crtvup.moodle.stu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.founder.codescanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b970191b-c00f-4bf4-ba27-62b7edf69e57";
+				PROVISIONING_PROFILE_SPECIFIER = Electronics1031;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

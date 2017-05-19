@@ -12,12 +12,15 @@ class QRCodeViewController: UIViewController {
     fileprivate lazy var topBar: UINavigationBar = {
         let bar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 64))
         bar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        bar.tintColor = UIColor.white
+        bar.barTintColor = UIColor(red: 47/255.0, green: 208/255.0, blue: 154/255.0, alpha: 1)
+        bar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         let item = UINavigationItem(title: "扫一扫")
         let leftBtn = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(QRCodeViewController.actionForBarButtonItemClicked(_:)))
         let rightBtn = UIBarButtonItem(title: "相册", style: .plain, target: self, action: #selector(QRCodeViewController.actionForBarButtonItemClicked(_:)))
         
-        item.leftBarButtonItem = leftBtn
+//        item.leftBarButtonItem = leftBtn
         item.rightBarButtonItem = rightBtn
         
         bar.items = [item]
@@ -68,6 +71,8 @@ extension QRCodeViewController{
         if QRCodeReader.isCameraUseDenied(){
             hanldeAlertForAuthorization(isCamera: true)
         }
+        
+        readerView.reader.session.startRunning()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,12 +83,19 @@ extension QRCodeViewController{
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nav = segue.destination as? UINavigationController,
+            let vc = nav.topViewController as? WebResultVC{
+            vc.url = sender as? String ?? ""
+        }
+    }
+    
     // MARK: - action & IBOutletAction
     @IBAction func actionForBarButtonItemClicked(_ sender: UIBarButtonItem){
         guard let item = topBar.items!.first else {
             return
         }
-        if sender == item.leftBarButtonItem! {
+        if let left = item.leftBarButtonItem, sender == left {
             completionFor(result: nil, isCancel: true)
         }
         else if sender == item.rightBarButtonItem! {
@@ -92,11 +104,28 @@ extension QRCodeViewController{
     }
     
     fileprivate func completionFor(result: String?, isCancel: Bool){
-        readerView.reader.stopScanning()
-        
-        dismiss(animated: true, completion: {
-            isCancel ? nil : self.completion?(result ?? "没有发现任何信息")
-        })
+        if isCancel {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let str = result
+        {
+            if str.contains("http") || str.contains("https"){
+                readerView.reader.stopScanning()
+                
+                performSegue(withIdentifier: "showWebResultPage", sender: str)
+            }
+            else if let url = URL(string: str),
+                UIApplication.shared.canOpenURL(url){
+                readerView.reader.stopScanning()
+
+                UIApplication.shared.openURL(url)
+            }
+            else{
+                let alert = UIAlertController(title: "扫描结果", message: str, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 }
 
@@ -107,8 +136,6 @@ extension QRCodeViewController{
             hanldeAlertForAuthorization(isCamera: false)
             return
         }
-        
-        readerView.reader.stopScanning()
         
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -129,7 +156,11 @@ extension QRCodeViewController{
     
     fileprivate func openSystemSettings(){
         let url = URL(string: UIApplicationOpenSettingsURLString)!
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     fileprivate func hanldeAlertForAuthorization(isCamera: Bool){
@@ -154,12 +185,9 @@ extension QRCodeViewController{
 extension QRCodeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-        
-        readerView.reader.startScanning(completion: completion)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             picker.dismiss(animated: true, completion: {

@@ -27,9 +27,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func actionForButtonClicked(_ sender: UIButton){
-        //        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) == .authorized{
-        //
-        //        }
+        
     }
 }
 

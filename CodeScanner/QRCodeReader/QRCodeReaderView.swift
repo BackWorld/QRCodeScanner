@@ -69,29 +69,38 @@ extension QRCodeReaderView{
 extension QRCodeReaderView{
     fileprivate func startOverlayAnimation(){
         // 动画
-        let h: CGFloat = isIpad() ? 300 : 200
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) {[unowned self]
-            (timer) in
-            
-            if self.cons <= 10{
-                self.scanningFromTop = true
-            }
-            else if self.cons >= h - 10{
-                self.scanningFromTop = false
+        if #available(iOS 10.0, *) {
+            timer = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) {[unowned self]
+                (timer) in
+                self.actionForScannerBoxAnimation(sender: timer)
             }
             
-            if self.scanningFromTop {
-                self.cons += 1
-            }
-            else{
-                self.cons -= 1
-            }
-            
-            self.lineIVTopCons.constant = self.cons
-            self.layoutIfNeeded()
+        } else {
+            timer = Timer.scheduledTimer(timeInterval: 0.004, target: self, selector: #selector(QRCodeReaderView.actionForScannerBoxAnimation(sender:)), userInfo: nil, repeats: true)
         }
         timer.fire()
+    }
+    
+    @objc fileprivate func actionForScannerBoxAnimation(sender: Timer){
+        let h: CGFloat = isIpad() ? 300 : 200
+
+        if self.cons <= 10{
+            scanningFromTop = true
+        }
+        else if self.cons >= h - 10{
+            scanningFromTop = false
+        }
+        
+        if self.scanningFromTop {
+            cons += 1
+        }
+        else{
+            cons -= 1
+        }
+        
+        self.lineIVTopCons.constant = self.cons
+        self.layoutIfNeeded()
     }
     
     fileprivate func isIpad() -> Bool{
