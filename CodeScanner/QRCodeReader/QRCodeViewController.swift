@@ -42,6 +42,10 @@ class QRCodeViewController: UIViewController {
         self.init()
         self.completion = completion
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 extension QRCodeViewController{
@@ -53,6 +57,9 @@ extension QRCodeViewController{
         if QRCodeReader.isDeviceAvailable() && !QRCodeReader.isCameraUseDenied(){
             setupReader()
         }
+        
+        // 监听
+        NotificationCenter.default.addObserver(self, selector: #selector(QRCodeViewController.handleNotification(noti:)), name: .UIApplicationWillEnterForeground, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -71,8 +78,6 @@ extension QRCodeViewController{
         if QRCodeReader.isCameraUseDenied(){
             hanldeAlertForAuthorization(isCamera: true)
         }
-        
-        readerView.reader.session.startRunning()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,6 +86,8 @@ extension QRCodeViewController{
         if QRCodeReader.isCameraUseAuthorized(){
             readerView.updateRectOfOutput()
         }
+        
+        readerView.reader.session.startRunning()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,6 +107,12 @@ extension QRCodeViewController{
         }
         else if sender == item.rightBarButtonItem! {
             handleActionForImagePicker()
+        }
+    }
+    
+    @objc fileprivate func handleNotification(noti: Notification){
+        if noti.name == .UIApplicationWillEnterForeground {
+            viewDidAppear(false) //刷新摄像头session
         }
     }
     

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
 	<string>扫一扫</string>
 	<key>CFBundleExecutable</key>
@@ -37,6 +37,9 @@
 		<string>YSY2.0</string>
 		<string>HYShangHaiStudent</string>
 		<string>HYShangHaiTeacher</string>
+		<string>mqq</string>
+		<string>weixin</string>
+		<string>weibo</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
