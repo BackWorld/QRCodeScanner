@@ -55,24 +55,24 @@ extension WebResultVC: UIWebViewDelegate{
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         title = "加载网页失败，请刷新重试"
         
-        setToolBarItemsState(canRefresh: true)
+        setToolBarItemsState(canRefresh: true, canGoBack: false, canGoForward: false)
     }
     
     func webViewDidStartLoad(_ webView: UIWebView) {
         title = "正在加载网页..."
         
-        setToolBarItemsState(canRefresh: false)
+        setToolBarItemsState(canRefresh: false, canGoBack: false, canGoForward: false)
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        setToolBarItemsState(canRefresh: true)
+        setToolBarItemsState(canRefresh: true, canGoBack: webView.canGoBack, canGoForward: webView.canGoForward)
         
         title = webView.stringByEvaluatingJavaScript(from: "document.title")
     }
     
-    fileprivate func setToolBarItemsState(canRefresh: Bool){
+    fileprivate func setToolBarItemsState(canRefresh: Bool, canGoBack: Bool, canGoForward: Bool){
         refreshBarItem.isEnabled = canRefresh
-        goBackBarItem.isEnabled = webView.canGoBack
-        goForwardBarItem.isEnabled = webView.canGoForward
+        goBackBarItem.isEnabled = canGoBack
+        goForwardBarItem.isEnabled = canGoForward
     }
 }

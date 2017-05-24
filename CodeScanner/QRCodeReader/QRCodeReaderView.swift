@@ -37,6 +37,8 @@ class QRCodeReaderView: UIView {
         
         return v
     }()
+    
+    fileprivate var isTorchOn = false
 
     deinit
     {
@@ -69,15 +71,15 @@ extension QRCodeReaderView{
 extension QRCodeReaderView{
     fileprivate func startOverlayAnimation(){
         // 动画
-        
+        let duration = 0.006
         if #available(iOS 10.0, *) {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) {[unowned self]
+            timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: true) {[unowned self]
                 (timer) in
                 self.actionForScannerBoxAnimation(sender: timer)
             }
             
         } else {
-            timer = Timer.scheduledTimer(timeInterval: 0.004, target: self, selector: #selector(QRCodeReaderView.actionForScannerBoxAnimation(sender:)), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(QRCodeReaderView.actionForScannerBoxAnimation(sender:)), userInfo: nil, repeats: true)
         }
         timer.fire()
     }
@@ -117,8 +119,8 @@ extension QRCodeReaderView{
     
     @IBAction func actionForButtonClicked(_ sender: UIButton) {
         if sender == torchBtn{
-            let on = QRCodeReader.toggleTorch()
-            let title = on ? "关闭" : "打开"
+            isTorchOn = QRCodeReader.toggleTorch(isOn: isTorchOn)
+            let title = isTorchOn ? "关闭" : "手电筒"
             sender.setTitle(title, for: .normal)
         }
     }

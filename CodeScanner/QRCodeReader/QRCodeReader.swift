@@ -117,11 +117,18 @@ extension QRCodeReader{
         return false
     }
     
-    public static func toggleTorch() -> Bool{
+    public static func toggleTorch(isOn: Bool) -> Bool{
         let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-        let isOn = device?.torchMode == .on
+        do{
+            try device?.lockForConfiguration()
+        }
+        catch let error{
+            print("打开闪光灯失败: \(String(describing: error))")
+            return false
+        }
         device?.torchMode = isOn ? .off : .on
-        return isOn
+        device?.unlockForConfiguration()
+        return device?.torchMode == .on
     }
 }
 

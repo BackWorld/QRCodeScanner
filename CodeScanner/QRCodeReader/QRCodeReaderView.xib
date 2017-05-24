@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,27 +27,27 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKq-mQ-MhK" userLabel="left">
                     <rect key="frame" x="0.0" y="0.0" width="193.5" height="375"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2I-nZ-3sp" userLabel="right">
                     <rect key="frame" x="393.5" y="0.0" width="273.5" height="375"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9P-EM-5nu" userLabel="top">
                     <rect key="frame" x="193.5" y="0.0" width="200" height="87.5"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cmb-LP-KWm" userLabel="bottom">
                     <rect key="frame" x="193.5" y="287.5" width="200" height="87.5"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请将二维码对准扫描框" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSX-Tb-2HY">
                     <rect key="frame" x="216.5" y="20" width="153" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" red="0.1201141855" green="0.82087920979999995" blue="0.59878143939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="heightClass=regular-widthClass=regular">
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     </variation>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_overlay" translatesAutoresizingMaskIntoConstraints="NO" id="3KK-4S-aaz">
@@ -82,7 +82,7 @@
                         <constraint firstAttribute="height" constant="5" id="p6p-w1-BMK"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqC-sW-BgP">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqC-sW-BgP">
                     <rect key="frame" x="567" y="157.5" width="60" height="60"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -95,8 +95,11 @@
                         <constraint firstAttribute="width" secondItem="RqC-sW-BgP" secondAttribute="height" multiplier="1:1" id="rau-Tq-Yb7"/>
                         <constraint firstAttribute="width" secondItem="RqC-sW-BgP" secondAttribute="height" multiplier="1:1" id="urL-AJ-BHS"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <color key="tintColor" red="0.1201141855" green="0.82087920979999995" blue="0.59878143939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="手电筒"/>
+                    <state key="normal" title="手电筒">
+                        <color key="titleColor" red="0.1201141855" green="0.82087920979999995" blue="0.59878143939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="djf-JO-F2w"/>
@@ -171,9 +174,9 @@
             <nil key="simulatedTopBarMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="IuQ-GE-BEJ"/>
                     <exclude reference="RgE-Tp-2OJ"/>
                     <exclude reference="cyg-VK-CWd"/>
+                    <exclude reference="IuQ-GE-BEJ"/>
                     <exclude reference="Iwz-qH-Agu"/>
                     <exclude reference="QpW-hh-FN8"/>
                     <exclude reference="gbR-5b-hlE"/>
@@ -182,12 +185,12 @@
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="constraints">
-                    <include reference="IuQ-GE-BEJ"/>
-                    <exclude reference="Xtd-0B-xHR"/>
                     <include reference="RgE-Tp-2OJ"/>
                     <include reference="cyg-VK-CWd"/>
                     <exclude reference="g0H-0W-PIm"/>
                     <exclude reference="qbx-2B-37E"/>
+                    <include reference="IuQ-GE-BEJ"/>
+                    <exclude reference="Xtd-0B-xHR"/>
                     <exclude reference="Ag0-qE-nn1"/>
                     <exclude reference="Ycg-BG-SMY"/>
                     <include reference="gbR-5b-hlE"/>
@@ -202,7 +205,7 @@
                     <exclude reference="Ycg-BG-SMY"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="47" y="61"/>
+            <point key="canvasLocation" x="106" y="12"/>
         </view>
     </objects>
     <resources>

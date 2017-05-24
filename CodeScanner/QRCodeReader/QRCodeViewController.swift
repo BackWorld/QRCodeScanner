@@ -135,7 +135,10 @@ extension QRCodeViewController{
             }
             else{
                 let alert = UIAlertController(title: "扫描结果", message: str, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "取消", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "复制", style: .cancel, handler: { (action) in
+                    UIPasteboard.general.string = str
+                }))
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -152,7 +155,7 @@ extension QRCodeViewController{
         
         let picker = UIImagePickerController()
         picker.delegate = self
-        picker.sourceType = .savedPhotosAlbum
+        picker.sourceType = .photoLibrary
         picker.allowsEditing = false
         
         present(picker, animated: true, completion: nil)
